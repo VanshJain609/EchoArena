@@ -13,5 +13,13 @@ UCLASS()
 class AEchoPlayerCharacter : public AEchoCharacter
 {
 	GENERATED_BODY()
+public:
+	AEchoPlayerCharacter();
 	
+private:
+	UPROPERTY(VisibleDefaultsOnly, Category = "View")
+	class USpringArmComponent* CameraBoom;
+
+	UPROPERTY(VisibleDefaultsOnly, Category = "View")
+	class UCameraComponent* ViewCamera;
 };
