@@ -1,0 +1,10 @@
+# Ignore everything
+/*
+
+# Allow these back
+!.gitignore
+!README.md
+
+# Allow Source code
+!Source/
+!Source/**
