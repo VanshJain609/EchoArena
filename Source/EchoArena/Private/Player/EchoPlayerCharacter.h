@@ -6,6 +6,7 @@
 #include "EchoArena/Character/EchoCharacter.h"
 #include "EchoPlayerCharacter.generated.h"
 
+class UInputAction;
 /**
  * 
  */
@@ -15,6 +16,8 @@ class AEchoPlayerCharacter : public AEchoCharacter
 	GENERATED_BODY()
 public:
 	AEchoPlayerCharacter();
+	virtual void PawnClientRestart() override;
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	
 private:
 	UPROPERTY(VisibleDefaultsOnly, Category = "View")
@@ -22,4 +25,10 @@ private:
 
 	UPROPERTY(VisibleDefaultsOnly, Category = "View")
 	class UCameraComponent* ViewCamera;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	class UInputAction* JumpInputAction;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	class UInputMappingContext* GamePlayInputMappingContext;
 };
