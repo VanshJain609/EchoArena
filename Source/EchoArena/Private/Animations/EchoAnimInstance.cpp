@@ -29,7 +29,10 @@ void UEchoAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 
 		YawSpeed = BodyRotDelta.Yaw / DeltaSeconds;
 		SmoothedYawSpeed = UKismetMathLibrary::FInterpTo(SmoothedYawSpeed, YawSpeed, DeltaSeconds, YawSpeedSmoothLerpSpeed);
-		
+	}
+	if (OwnerMovementComponent)
+	{
+		bIsJumping = OwnerMovementComponent->IsFalling();
 	}
 }
 
