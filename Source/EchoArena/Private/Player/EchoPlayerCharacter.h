@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "EchoArena/Character/EchoCharacter.h"
+#include "InputActionValue.h"
 #include "EchoPlayerCharacter.generated.h"
 
 class UInputAction;
@@ -28,7 +29,12 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	class UInputAction* JumpInputAction;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	class UInputAction* LookInputAction;
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	class UInputMappingContext* GamePlayInputMappingContext;
+
+	void HandleLookInput(const FInputActionValue& InputActionValue);
 };

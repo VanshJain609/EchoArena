@@ -12,9 +12,11 @@ AEchoPlayerCharacter::AEchoPlayerCharacter()
 {
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>("Camera Boom");
 	CameraBoom->SetupAttachment(GetRootComponent());
+	CameraBoom->bUsePawnControlRotation = true;
 
 	ViewCamera = CreateDefaultSubobject<UCameraComponent>("View Camera");
 	ViewCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
+	bUseControllerRotationYaw = false;
 }
 
 void AEchoPlayerCharacter::PawnClientRestart()
@@ -39,5 +41,13 @@ void AEchoPlayerCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 	if (EnhancedInputComponent)
 	{
 		EnhancedInputComponent->BindAction(JumpInputAction, ETriggerEvent::Triggered, this, &AEchoPlayerCharacter::Jump);
+		EnhancedInputComponent->BindAction(LookInputAction, ETriggerEvent::Triggered, this, &AEchoPlayerCharacter::HandleLookInput);
 	}
+}
+
+void AEchoPlayerCharacter::HandleLookInput(const FInputActionValue& InputActionValue)
+{
+	FVector2D InputValue = InputActionValue.Get<FVector2D>();
+	AddControllerPitchInput(-InputValue.Y);
+	AddControllerYawInput(InputValue.X);
 }
