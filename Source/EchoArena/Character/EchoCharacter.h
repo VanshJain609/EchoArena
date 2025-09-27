@@ -4,10 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "AbilitySystemInterface.h"
 #include "EchoCharacter.generated.h"
 
 UCLASS()
-class ECHOARENA_API AEchoCharacter : public ACharacter
+class ECHOARENA_API AEchoCharacter : public ACharacter, public IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
@@ -26,4 +27,17 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	/***********************************************************************************************/
+	/*                                            Gameplay Ability                                 */
+	/***********************************************************************************************/
+
+public:
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+
+private:
+	UPROPERTY()
+	class UEchoAbilitySystemComponent* EchoAbilitySystemComponent;
+
+	UPROPERTY()
+	class UEchoAttributeSet* EchoAttributeSet;
 };

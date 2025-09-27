@@ -3,6 +3,8 @@
 
 #include "EchoCharacter.h"
 #include "Components/SkeletalMeshComponent.h"
+#include "GAS/EchoAbilitySystemComponent.h"
+#include "GAS/EchoAttributeSet.h"
 
 // Sets default values
 AEchoCharacter::AEchoCharacter()
@@ -10,6 +12,9 @@ AEchoCharacter::AEchoCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	GetMesh()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
+	EchoAbilitySystemComponent = CreateDefaultSubobject<UEchoAbilitySystemComponent>("Echo Ability System Component");
+	EchoAttributeSet = CreateDefaultSubobject<UEchoAttributeSet>("Echo Attribute Set");
 }
 
 // Called when the game starts or when spawned
@@ -31,5 +36,10 @@ void AEchoCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+UAbilitySystemComponent* AEchoCharacter::GetAbilitySystemComponent() const
+{
+	return EchoAbilitySystemComponent;
 }
 
