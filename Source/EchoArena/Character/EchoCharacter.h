@@ -15,6 +15,8 @@ class ECHOARENA_API AEchoCharacter : public ACharacter, public IAbilitySystemInt
 public:
 	// Sets default values for this character's properties
 	AEchoCharacter();
+	void ServerSideInit();
+	void ClientSideInit();
 
 protected:
 	// Called when the game starts or when spawned
@@ -35,7 +37,7 @@ public:
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 
 private:
-	UPROPERTY()
+	UPROPERTY(VisibleDefaultsOnly, Category = "Gameplay Ability")
 	class UEchoAbilitySystemComponent* EchoAbilitySystemComponent;
 
 	UPROPERTY()

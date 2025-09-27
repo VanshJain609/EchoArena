@@ -17,6 +17,17 @@ AEchoCharacter::AEchoCharacter()
 	EchoAttributeSet = CreateDefaultSubobject<UEchoAttributeSet>("Echo Attribute Set");
 }
 
+void AEchoCharacter::ServerSideInit()
+{
+	EchoAbilitySystemComponent->InitAbilityActorInfo(this, this);
+	EchoAbilitySystemComponent->ApplyInitialEffects();
+}
+
+void AEchoCharacter::ClientSideInit()
+{
+	EchoAbilitySystemComponent->InitAbilityActorInfo(this, this);
+}
+
 // Called when the game starts or when spawned
 void AEchoCharacter::BeginPlay()
 {
